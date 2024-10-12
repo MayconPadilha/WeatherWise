@@ -1,0 +1,47 @@
+<main class="main">
+  <div class="formulario">
+    <form class="formulario-pesquisa">
+      <label for="input">Pesquisa</label>
+      <input name="input" id="input" [(ngModel)]="pesquisa">
+      <button (click)="buscarEndereco()">Pesquisar</button>
+    </form>
+  </div>
+</main>
+
+<div class="container__tempo">
+  <div class="container__top">
+    <div class="card__header">
+      <p>{{ dadosAgora.name }}</p>
+    </div>
+
+    <div class="card__main">
+    <div class="card__main__left">
+      <div class="card__main__left__temp">
+        <img src="https://openweathermap.org/img/wn/{{dadosAgora.weather[0].icon}}@2x.png" alt="">
+        <span>{{ dadosAgora.main.temp }}°</span>
+      </div>
+      <span>Sensação de {{ dadosAgora.main.feels_like }}º</span>
+    </div>
+    <div class="card__main__right">
+      <span> {{ dadosAgora.weather[0].description }}</span>
+      <span>{{ dadosAgora.main.temp_max }}° / {{ dadosAgora.main.temp_min }}°</span>
+    </div>
+  </div>
+  </div>
+
+  <div class="container__bottom">
+  @for (dado of dadosPrevisao; track $index) {
+    <div class="card__previsao">
+      <div class="card__previsao__header">
+        <span>{{ dado.dt_txt | horario }}</span>
+      </div>
+
+      <div class="card__previsao__main">
+        <img src="https://openweathermap.org/img/wn/{{dado.weather[0].icon}}@2x.png" alt="">
+        <span>{{ dado.main.temp }}°</span>
+      </div>
+    </div>
+  }
+  </div>
+</div>
+
