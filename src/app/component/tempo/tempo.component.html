@@ -1,30 +1,21 @@
-<main class="main">
-  <div class="formulario">
-    <form class="formulario-pesquisa">
-      <label for="input">Pesquisa</label>
-      <input name="input" id="input" [(ngModel)]="pesquisa">
-      <button (click)="buscarEndereco()">Pesquisar</button>
-    </form>
-  </div>
-</main>
-
 <div class="container__tempo">
   <div class="container__top">
     <div class="card__header">
-      <p>{{ dadosAgora.name }}</p>
+      <p>{{ dadosAgora.name }}, {{ dadosAgora.sys.country }}</p>
+      <span>{{ formatDateTimeNow(dadosAgora.dt) }}</span>
     </div>
 
     <div class="card__main">
     <div class="card__main__left">
       <div class="card__main__left__temp">
         <img src="https://openweathermap.org/img/wn/{{dadosAgora.weather[0].icon}}@2x.png" alt="">
-        <span>{{ dadosAgora.main.temp }}°</span>
+        <span>{{ convertTemperature(dadosAgora.main.temp) }}°</span>
       </div>
-      <span>Sensação de {{ dadosAgora.main.feels_like }}º</span>
+      <span>Sensação de {{ convertTemperature(dadosAgora.main.feels_like) }}º</span>
     </div>
     <div class="card__main__right">
       <span> {{ dadosAgora.weather[0].description }}</span>
-      <span>{{ dadosAgora.main.temp_max }}° / {{ dadosAgora.main.temp_min }}°</span>
+      <span>{{ convertTemperature(dadosAgora.main.temp_max) }}° max / {{ convertTemperature(dadosAgora.main.temp_min) }}° min</span>
     </div>
   </div>
   </div>
@@ -33,15 +24,34 @@
   @for (dado of dadosPrevisao; track $index) {
     <div class="card__previsao">
       <div class="card__previsao__header">
-        <span>{{ dado.dt_txt | horario }}</span>
+        <span>{{ formatDateTime(dado.dt_txt) }}</span>
       </div>
 
       <div class="card__previsao__main">
         <img src="https://openweathermap.org/img/wn/{{dado.weather[0].icon}}@2x.png" alt="">
-        <span>{{ dado.main.temp }}°</span>
+        <span>{{ convertTemperature(dado.main.temp) }}°</span>
       </div>
     </div>
   }
   </div>
+</div>
+
+<div class="container__semanal">
+  @for (dado of dadosPrevisaoTempoDiario; track $index) {
+    <div class="card__linha">
+      <div class="card_coluna">
+        <span>{{ getFormattedDate(dado.dt) }}</span>
+      </div>
+      <div class="card_coluna">
+        <img src="https://openweathermap.org/img/wn/{{dado.weather[0].icon}}@2x.png" alt="">
+      </div>
+      <div class="card_coluna">
+        <span>{{ convertTemperature(dado.temp.max) }}° / {{ convertTemperature(dado.temp.min) }}°</span>
+      </div>
+      <div class="card_coluna">
+        <span>{{ dado.weather[0].description }}</span>
+      </div>
+    </div>
+  }
 </div>
 

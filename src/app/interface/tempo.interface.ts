@@ -13,6 +13,7 @@ export interface WeatherDataNow {
   weather: { main: string; description: string; icon: string }[];
   main: { humidity: number; temp: number; temp_max: number; temp_min: number; feels_like : number };
   wind: { speed: number };
+  dt: number;
 }
 
 // export interface WeatherData {
@@ -34,6 +35,40 @@ export interface WeatherDetails {
   sys: Sys;
   dt_txt: string;
 }
+
+export interface TempoDiario {
+  dt: number;
+  sunrise: number;
+  sunset: number;
+  temp: {
+    day: number;
+    min: number;
+    max: number;
+    night: number;
+    eve: number;
+    morn: number;
+  };
+  feels_like: {
+    day: number;
+    night: number;
+    eve: number;
+    morn: number;
+  };
+  pressure: number;
+  humidity: number;
+  weather: {
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+  }[];
+  speed: number;
+  deg: number;
+  gust: number;
+  clouds: number;
+  pop: number;
+}
+
 
 export interface Main {
   temp: number;

@@ -1,4 +1,5 @@
 
-<app-tempo></app-tempo>
+<app-pesquisa (pesquisaEmitida)="atualizarPesquisa($event)"></app-pesquisa>
+<app-tempo [pesquisa]="pesquisa"></app-tempo>
 
 <router-outlet />
