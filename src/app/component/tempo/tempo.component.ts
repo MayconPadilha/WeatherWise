@@ -1,19 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TempoService } from '../../service/tempo.service';
-import { TempoDiario, TempoInterface, WeatherDataNow, WeatherDetails } from '../../interface/tempo.interface';
-import { HorarioPipe } from '../../pipes/horario.pipe';
+import { LocalizacaoCidade, WeatherPrevisao, WeatherPrevisaoTempoDiario, WeatherTempoAgora } from '../../interface/tempo.interface';
 
 @Component({
   selector: 'app-tempo',
   standalone: true,
-  imports: [HorarioPipe],
+  imports: [],
   templateUrl: './tempo.component.html',
   styleUrl: './tempo.component.css',
 })
 export class TempoComponent implements OnInit {
   @Input() pesquisa: string = '';
-  tempoList: TempoInterface[] = [];
-  dadosAgora: WeatherDataNow = {
+  localizacaoCidade: LocalizacaoCidade[] = [];
+
+  dadosTempoAgora: WeatherTempoAgora = {
     id: 0,
     name: '',
     sys: { country: '' },
@@ -22,9 +22,10 @@ export class TempoComponent implements OnInit {
     wind: { speed: 0 },
     dt: 0,
   };
-  dadosPrevisao: WeatherDetails[] = [];
 
-  dadosPrevisaoTempoDiario: TempoDiario[] = [];
+  dadosPrevisao: WeatherPrevisao[] = [];
+
+  dadosPrevisaoTempoDiario: WeatherPrevisaoTempoDiario[] = [];
 
   constructor(private tempoService: TempoService) {}
 
@@ -41,10 +42,10 @@ export class TempoComponent implements OnInit {
   buscarEndereco() {
     this.tempoService.getBuscarDadosEndereco(this.pesquisa).subscribe({
       next: (result) => {
-        this.tempoList = result;
-        if (this.tempoList.length > 0) {
+        this.localizacaoCidade = result;
+        if (this.localizacaoCidade.length > 0) {
           this.buscarTempoAgora();
-          this.buscarTempo();
+          this.buscarTempoPrevisao();
           this.PrevisaoTempoDiario();
         }
       },
@@ -56,33 +57,39 @@ export class TempoComponent implements OnInit {
 
   buscarTempoAgora() {
     this.tempoService
-      .getBuscarTempoAgora(this.tempoList[0].lat, this.tempoList[0].lon)
+      .getBuscarTempoAgora(
+        this.localizacaoCidade[0].lat,
+        this.localizacaoCidade[0].lon
+      )
       .subscribe({
         next: (result) => {
-          this.dadosAgora = result;
-          console.log(result);
+          this.dadosTempoAgora = result;
         },
       });
   }
 
-  buscarTempo() {
+  buscarTempoPrevisao() {
     this.tempoService
-      .getPrevisaoTempo(this.tempoList[0].lat, this.tempoList[0].lon)
+      .getbuscarTempoPrevisao(
+        this.localizacaoCidade[0].lat,
+        this.localizacaoCidade[0].lon
+      )
       .subscribe({
         next: (result) => {
           this.dadosPrevisao = result.list;
-          // console.log(this.dadosPrevisao);
         },
       });
   }
 
   PrevisaoTempoDiario() {
     this.tempoService
-      .getPrevisaoTempoDiario(this.tempoList[0].lat, this.tempoList[0].lon)
+      .getPrevisaoTempoDiario(
+        this.localizacaoCidade[0].lat,
+        this.localizacaoCidade[0].lon
+      )
       .subscribe({
         next: (result) => {
           this.dadosPrevisaoTempoDiario = result.list;
-          // console.log(this.dadosPrevisaoTempoDiario);
         },
       });
   }
@@ -114,6 +121,10 @@ export class TempoComponent implements OnInit {
 
   getFormattedDate(timestamp: number): string {
     const date = new Date(timestamp * 1000);
-    return date.toLocaleDateString('pt-BR', { day: 'numeric', weekday: 'short' , month: 'short' });
+    return date.toLocaleDateString('pt-BR', {
+      day: 'numeric',
+      weekday: 'short',
+      month: 'short',
+    });
   }
 }

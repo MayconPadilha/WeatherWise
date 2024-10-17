@@ -1,27 +1,51 @@
-# WeatherWise
+# Weather App Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
+Este projeto é um aplicativo Angular que exibe informações meteorológicas atuais, previsão do tempo para as próximas horas e previsão diária. Ele utiliza a API do OpenWeatherMap para obter dados meteorológicos com base na localização pesquisada pelo usuário.
 
-## Development server
+### Link do projeto
+https://weather-wise-rho-blue.vercel.app/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Funcionalidades
 
-## Code scaffolding
+- Exibição de informações meteorológicas atuais (cidade, país, temperatura, sensação térmica, descrição do tempo, etc.)
+- Previsão do tempo para as próximas horas
+- Previsão do tempo para os próximos dias
+- Atualização automática dos dados
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tecnologias Utilizadas
 
-## Build
+- Angular
+- TypeScript
+- HTML
+- CSS
+- API OpenWeatherMap
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Componentes
 
-## Running unit tests
+### PesquisaComponent
+Este componente permite ao usuário pesquisar a localização para a qual deseja obter informações meteorológicas. Ao inserir o nome de uma cidade, o componente chama os métodos do TempoService para buscar os dados necessários.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### TempoComponent
+Este componente exibe as informações meteorológicas atuais, a previsão do tempo para as próximas horas e a previsão diária. Ele utiliza o serviço TempoService para obter os dados da API.
 
-## Running end-to-end tests
+## Serviços
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### TempoService
+Este serviço é responsável por fazer chamadas à API do OpenWeatherMap para buscar dados meteorológicos baseados na localização pesquisada pelo usuário.
 
-## Further help
+### Interfaces
+As interfaces definem a estrutura dos dados recebidos da API.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Instalação
+
+Instale as dependências:
+
+1. Instale as dependências:
+npm install
+Inicie o servidor de desenvolvimento:
+
+2. Inicie o servidor de desenvolvimento:
+ng serve
+
+3. Abra seu navegador e acesse:
+http://localhost:4200

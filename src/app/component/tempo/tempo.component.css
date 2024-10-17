@@ -1,4 +1,5 @@
-.container__tempo, .container__semanal{
+.container__tempo,
+.container__semanal {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,29 +9,29 @@
   font-size: 24px;
   font-weight: bold;
   color: #fff;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   margin-top: 10px;
   gap: 60px;
 }
 
-.container__top{
+.container__top {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: center;
 }
 
-.card__header{
+.card__header {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.card__header span{
+.card__header span {
   font-size: 18px;
 }
 
-.card__main{
+.card__main {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -39,13 +40,13 @@
   gap: 10px;
 }
 
-.card__main__left{
+.card__main__left {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.card__main__left .card__main__left__temp{
+.card__main__left .card__main__left__temp {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -62,7 +63,7 @@
   color: #fff;
 }
 
-.card__main__left span{
+.card__main__left span {
   font-size: 18px;
   font-weight: bold;
   color: #fff;
@@ -78,20 +79,20 @@
 
 /* ------------------------------------------------------------------------ */
 
-.container__bottom{
+.container__bottom {
   display: flex;
   justify-content: center;
   gap: 20px;
 }
 
-.card__previsao{
+.card__previsao {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
-.card__previsao__main{
+.card__previsao__main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,7 +100,7 @@
 
 /* ------------------------------------------------------------------------ */
 
-.container__semanal{
+.container__semanal {
   display: flex;
   flex-direction: column;
   gap: 0px;
@@ -107,25 +108,50 @@
   font-weight: normal;
   margin-top: 10px;
   align-items: center;
-    justify-content: center;
-    align-items: stretch;
+  justify-content: center;
+  align-items: stretch;
 }
 
-.card__linha{
+.card__linha {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
-.card__linha img{
+.card__linha img {
   width: auto;
   height: 50px;
 }
 
-.card__linha .card_coluna{
+.card__linha .card_coluna {
   display: flex;
   justify-content: center;
   width: 15%;
 }
 
+@media (max-width: 768px) {
+  .card__main {
+    width: 100%;
+    gap: 20px;
+    font-size: medium;
+  }
+
+  .container__bottom {
+    flex-wrap: wrap;
+    gap: 10px;
+    row-gap: 36px;
+  }
+
+  .card__previsao {
+    width: 80px;
+  }
+
+  .card__linha {
+    justify-content: space-between;
+  }
+
+  .card__linha .card_coluna {
+    width: 23%;
+  }
+}

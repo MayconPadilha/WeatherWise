@@ -1,4 +1,4 @@
-export interface TempoInterface {
+export interface LocalizacaoCidade {
   country: String;
   lat: number;
   lon: number;
@@ -6,40 +6,31 @@ export interface TempoInterface {
   state: String;
 }
 
-export interface WeatherDataNow {
+export interface WeatherTempoAgora {
   id: number;
   name: string;
   sys: { country: string };
   weather: { main: string; description: string; icon: string }[];
-  main: { humidity: number; temp: number; temp_max: number; temp_min: number; feels_like : number };
+  main: {
+    humidity: number;
+    temp: number;
+    temp_max: number;
+    temp_min: number;
+    feels_like: number;
+  };
   wind: { speed: number };
   dt: number;
 }
 
-// export interface WeatherData {
-//   cod: string;
-//   message: number;
-//   cnt: number;
-//   list: WeatherDetails[];
-//   city: City;
-// }
-
-export interface WeatherDetails {
+export interface WeatherPrevisao {
   dt: number;
   main: Main;
   weather: Weather[];
-  clouds: Clouds;
-  wind: Wind;
-  visibility: number;
-  pop: number;
-  sys: Sys;
   dt_txt: string;
 }
 
-export interface TempoDiario {
+export interface WeatherPrevisaoTempoDiario {
   dt: number;
-  sunrise: number;
-  sunset: number;
   temp: {
     day: number;
     min: number;
@@ -48,27 +39,13 @@ export interface TempoDiario {
     eve: number;
     morn: number;
   };
-  feels_like: {
-    day: number;
-    night: number;
-    eve: number;
-    morn: number;
-  };
-  pressure: number;
-  humidity: number;
   weather: {
     id: number;
     main: string;
     description: string;
     icon: string;
   }[];
-  speed: number;
-  deg: number;
-  gust: number;
-  clouds: number;
-  pop: number;
 }
-
 
 export interface Main {
   temp: number;
@@ -87,34 +64,4 @@ export interface Weather {
   main: string;
   description: string;
   icon: string;
-}
-
-export interface Clouds {
-  all: number;
-}
-
-export interface Wind {
-  speed: number;
-  deg: number;
-  gust: number;
-}
-
-export interface Sys {
-  pod: string;
-}
-
-export interface City {
-  id: number;
-  name: string;
-  coord: Coord;
-  country: string;
-  population: number;
-  timezone: number;
-  sunrise: number;
-  sunset: number;
-}
-
-export interface Coord {
-  lat: number;
-  lon: number;
 }

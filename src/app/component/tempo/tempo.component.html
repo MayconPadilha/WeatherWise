@@ -1,21 +1,21 @@
 <div class="container__tempo">
   <div class="container__top">
     <div class="card__header">
-      <p>{{ dadosAgora.name }}, {{ dadosAgora.sys.country }}</p>
-      <span>{{ formatDateTimeNow(dadosAgora.dt) }}</span>
+      <p>{{ dadosTempoAgora.name }}, {{ dadosTempoAgora.sys.country }}</p>
+      <span>{{ formatDateTimeNow(dadosTempoAgora.dt) }}</span>
     </div>
 
     <div class="card__main">
     <div class="card__main__left">
       <div class="card__main__left__temp">
-        <img src="https://openweathermap.org/img/wn/{{dadosAgora.weather[0].icon}}@2x.png" alt="">
-        <span>{{ convertTemperature(dadosAgora.main.temp) }}°</span>
+        <img src="https://openweathermap.org/img/wn/{{dadosTempoAgora.weather[0].icon}}@2x.png" alt="">
+        <span>{{ convertTemperature(dadosTempoAgora.main.temp) }}°</span>
       </div>
-      <span>Sensação de {{ convertTemperature(dadosAgora.main.feels_like) }}º</span>
+      <span>Sensação de {{ convertTemperature(dadosTempoAgora.main.feels_like) }}º</span>
     </div>
     <div class="card__main__right">
-      <span> {{ dadosAgora.weather[0].description }}</span>
-      <span>{{ convertTemperature(dadosAgora.main.temp_max) }}° max / {{ convertTemperature(dadosAgora.main.temp_min) }}° min</span>
+      <span> {{ dadosTempoAgora.weather[0].description }}</span>
+      <span>{{ convertTemperature(dadosTempoAgora.main.temp_max) }}° max / {{ convertTemperature(dadosTempoAgora.main.temp_min) }}° min</span>
     </div>
   </div>
   </div>

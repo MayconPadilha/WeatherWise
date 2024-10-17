@@ -15,6 +15,5 @@ export class PesquisaComponent {
   buscarEndereco() {
     this.pesquisaEmitida.emit(this.pesquisa);
     this.pesquisa = '';
-    // console.log(this.pesquisa);
   }
 }

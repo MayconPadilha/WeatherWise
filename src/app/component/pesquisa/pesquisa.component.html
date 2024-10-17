@@ -1,7 +1,6 @@
-<div class="formulario">
+<div class="formulario-container">
   <form (ngSubmit)="buscarEndereco()">
-    <!-- <label for="input">Pesquisa</label> -->
-    <input name="input" id="input" [(ngModel)]="pesquisa" placeholder="Pesquisar a previsão da sua cidade" />
+    <input name="input" id="input" [(ngModel)]="pesquisa" placeholder="Pesquisar cidade" />
     <button type="submit">Pesquisar</button>
   </form>
 </div>

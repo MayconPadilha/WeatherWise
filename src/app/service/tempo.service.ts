@@ -30,11 +30,10 @@ export class TempoService {
       '&appid=' +
       this.API_KEY +
       '&units=metric&lang=pt_br';
-
     return this.httpClient.get(API_URL).pipe((res) => res);
   }
 
-  getPrevisaoTempo(lat: number, lon: number): Observable<any> {
+  getbuscarTempoPrevisao(lat: number, lon: number): Observable<any> {
     const API_URL: string =
       'https://api.openweathermap.org/data/2.5/forecast?' +
       'lat=' +
