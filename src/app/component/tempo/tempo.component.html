@@ -35,23 +35,3 @@
   }
   </div>
 </div>
-
-<div class="container__semanal">
-  @for (dado of dadosPrevisaoTempoDiario; track $index) {
-    <div class="card__linha">
-      <div class="card_coluna">
-        <span>{{ getFormattedDate(dado.dt) }}</span>
-      </div>
-      <div class="card_coluna">
-        <img src="https://openweathermap.org/img/wn/{{dado.weather[0].icon}}@2x.png" alt="">
-      </div>
-      <div class="card_coluna">
-        <span>{{ convertTemperature(dado.temp.max) }}° / {{ convertTemperature(dado.temp.min) }}°</span>
-      </div>
-      <div class="card_coluna">
-        <span>{{ dado.weather[0].description }}</span>
-      </div>
-    </div>
-  }
-</div>
-

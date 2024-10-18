@@ -58,4 +58,38 @@ export class TempoService {
       '&units=metric&lang=pt_br&cnt=7';
     return this.httpClient.get(API_URL).pipe((res) => res);
   }
+
+  formatDateTimeNow(dateTimeStr: number): string {
+    const date = new Date(dateTimeStr * 1000);
+    const formattedDate = date.toLocaleDateString('pt-BR', {
+      weekday: 'short',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+    return formattedDate;
+  }
+
+  convertTemperature(temp: number): number {
+    return Math.round(temp);
+  }
+
+  formatDateTime(dateTimeStr: string): string {
+    const date = new Date(dateTimeStr);
+    const options: Intl.DateTimeFormatOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+    };
+    return date.toLocaleString('pt-BR', options);
+  }
+
+  getFormattedDate(timestamp: number): string {
+    const date = new Date(timestamp * 1000);
+    return date.toLocaleDateString('pt-BR', {
+      day: 'numeric',
+      weekday: 'short',
+      month: 'short',
+    });
+  }
 }

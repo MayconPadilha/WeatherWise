@@ -25,8 +25,6 @@ export class TempoComponent implements OnInit {
 
   dadosPrevisao: WeatherPrevisao[] = [];
 
-  dadosPrevisaoTempoDiario: WeatherPrevisaoTempoDiario[] = [];
-
   constructor(private tempoService: TempoService) {}
 
   ngOnInit(): void {
@@ -46,7 +44,6 @@ export class TempoComponent implements OnInit {
         if (this.localizacaoCidade.length > 0) {
           this.buscarTempoAgora();
           this.buscarTempoPrevisao();
-          this.PrevisaoTempoDiario();
         }
       },
       error: (error) => {
@@ -81,50 +78,16 @@ export class TempoComponent implements OnInit {
       });
   }
 
-  PrevisaoTempoDiario() {
-    this.tempoService
-      .getPrevisaoTempoDiario(
-        this.localizacaoCidade[0].lat,
-        this.localizacaoCidade[0].lon
-      )
-      .subscribe({
-        next: (result) => {
-          this.dadosPrevisaoTempoDiario = result.list;
-        },
-      });
-  }
-
   formatDateTimeNow(dateTimeStr: number): string {
-    const date = new Date(dateTimeStr * 1000);
-    const formattedDate = date.toLocaleDateString('pt-BR', {
-      weekday: 'short',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-    return formattedDate;
+    return this.tempoService.formatDateTimeNow(dateTimeStr);
   }
 
   convertTemperature(temp: number): number {
-    return Math.round(temp);
+    return this.tempoService.convertTemperature(temp);
   }
 
   formatDateTime(dateTimeStr: string): string {
-    const date = new Date(dateTimeStr);
-    const options: Intl.DateTimeFormatOptions = {
-      hour: '2-digit',
-      minute: '2-digit',
-    };
-    return date.toLocaleString('pt-BR', options);
+    return this.tempoService.formatDateTime(dateTimeStr);
   }
 
-  getFormattedDate(timestamp: number): string {
-    const date = new Date(timestamp * 1000);
-    return date.toLocaleDateString('pt-BR', {
-      day: 'numeric',
-      weekday: 'short',
-      month: 'short',
-    });
-  }
 }

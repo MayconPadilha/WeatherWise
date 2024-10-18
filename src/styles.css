@@ -1,3 +1,11 @@
+:root{
+  --font-family: 'Roboto', sans-serif;
+  --background-color: linear-gradient(317.63deg, #353589 -7.42%, #9a9aff 120.45%);
+  --bg-color-button: #9a9aff;
+  --bg-color-button-hover: #353589;
+  --color-font: #fff;
+}
+
 body {
   background-color: #f2f2f2;
 }
